@@ -1,0 +1,78 @@
+enum Command
+{
+	CMD_PUSH_NOTIFICATION = 0x10;
+	CMD_QUERY_INVALID_TOKENS = 0x40;
+	CMD_APP_UPDATE = 0x50;
+}
+
+enum ClientType
+{
+	TYPE_IOS = 0;
+	TYPE_ANDROID = 1;
+}
+
+enum ServiceType
+{
+	SERVICE_APNS = 0;
+	SERVICE_GPNS = 1;
+	SERVICE_GCMS = 2;
+}
+
+enum PriorityLevel
+{
+	PRIORITY_NORMAL = 1;
+	PRIORITY_HIGH = 2;
+}
+
+message Notification
+{
+	optional string app_id = 1;
+	optional uint32 client_type = 2;
+	optional bytes device_token = 3;
+	optional uint32 expire_time = 4;
+	optional string message = 5;
+	optional uint32 badge = 6;
+	optional string sound = 7;
+	optional string data = 8;
+	optional uint32 flag = 9;
+	optional uint32 service_type = 14;
+	optional uint32 priority = 15;
+}
+
+message PNSResponse
+{
+	enum  ErrorCode
+	{
+		PNS_SUCCESS = 0;
+		PNS_PARAMS_INVALID = 1;
+		PNS_OVERSIZE = 2;
+		PNS_SERVER_ERROR = 3;
+		PNS_SERVER_REJECT = 4;
+	}
+	
+	optional uint32 error_code = 1;
+}
+
+message InvalidTokenQuery
+{
+	optional string app_id = 1;
+	optional uint32 client_type = 2;
+	optional uint32 service_type = 3;
+}
+
+message Token
+{
+	optional uint32 client_type = 1;
+	optional uint32 timestamp = 2;
+	optional bytes device_token = 3;
+}
+
+message InvalidTokens
+{
+	repeated Token tokens = 1;
+}
+
+message AppUpdateRequest
+{
+	optional string app_id = 1;
+}

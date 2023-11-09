@@ -1,0 +1,5 @@
+pyjwt
+google-cloud-storage
+google.oauth
+typing-extensions
+tld

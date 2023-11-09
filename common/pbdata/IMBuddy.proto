@@ -1,0 +1,28 @@
+package PBData.IM;
+
+message Buddy
+{
+	required uint32 uid = 1;
+	required uint32 buddyid = 2;
+	optional uint32 cateid = 3;
+	optional uint32 relation = 4;
+	optional uint32 createdate = 5;
+}
+
+message BuddyRequest
+{
+	required uint32 fromid = 1;
+	required uint32 toid = 2;
+	optional string name = 3;
+	optional string reason = 4;
+	optional uint32 createtime = 5;
+	optional uint32 cateid = 6;
+}
+
+message BuddyCategory
+{
+	required uint32 cateid = 1;
+	optional string name = 2;
+	required uint32 uid = 3;
+	optional uint32 createdate = 4;
+}

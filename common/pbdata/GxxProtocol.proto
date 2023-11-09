@@ -1,0 +1,221 @@
+package PBData.GxxProtocol;
+
+message Constant
+{
+	enum ServerType
+	{
+		SERVER_CONNECTION = 1;
+		SERVER_SESSION = 2;
+		SERVER_ROUTER = 3;
+		SERVER_LOGIC = 4;
+		SERVER_NOTIFY = 5;
+		SERVER_IMLOGIC = 6;
+		SERVER_SERVICE = 0x0100;
+	}
+
+	enum CommandType
+	{
+		CMD_S2S_REQUEST = 0;
+	}
+	
+	enum Command
+	{
+		CMD_ROUTE = 0x0011;
+		CMD_NS_PUSH = 0x0031;
+		CMD_LS_BUDDY_IMPORT = 0x0701;
+		CMD_LS_MESSAGE_SEND = 0x0731;
+		CMD_LS_NOTIFICATION_SEND = 0x0732;
+		CMD_LS_APP_GROUP_CREATE = 0x0741;
+		CMD_LS_DISCUSSION_REMOVE = 0x0745;
+		CMD_LS_DISCUSSION_UPDATE = 0x0746;
+		CMD_LS_DISCUSSION_MEMBER_ADD = 0x0747;
+		CMD_LS_DISCUSSION_MEMBER_REMOVE = 0x0748;
+	}
+
+	enum ClientPlatform
+	{
+		CLIENT_PLATFORM_WINDOWS = 0x00;
+		CLIENT_PLATFORM_MAC_OS = 0x01;
+		CLIENT_PLATFORM_WEB = 0x02;
+		CLIENT_PLATFORM_IOS = 0x10;
+		CLIENT_PLATFORM_ANDROID = 0x11;
+		CLIENT_PLATFORM_WINDOWS_PHONE = 0x12;
+	}
+
+	enum AppMessageDisplayType
+	{
+		APP_MESSAGE_DISPLAY_TEXT = 1;
+		APP_MESSAGE_DISPLAY_IMAGE = 2;
+		APP_MESSAGE_DISPLAY_LINK = 3;
+	}
+
+	enum MessageSessionType
+	{
+		MESSAGE_SESSION_USER = 1;
+		MESSAGE_SESSION_GROUP = 2;
+		MESSAGE_SESSION_DISCUSSION = 3;
+		MESSAGE_SESSION_SYSTEM = 4;
+		MESSAGE_SESSION_GROUP_SYSTEM = 5;
+	}
+
+	enum MessageType
+	{
+		MESSAGE_TYPE_TEXT = 0;
+		MESSAGE_TYPE_RICHTEXT = 1;
+		MESSAGE_TYPE_AUDIO = 2;
+		MESSAGE_TYPE_EVENT = 10;
+		MESSAGE_TYPE_NOTIFICATION = 11;
+		MESSAGE_TYPE_REQUEST = 12;
+		MESSAGE_TYPE_APP = 13;
+		MESSAGE_TYPE_FILE = 20;
+
+		MESSAGE_TYPE_CLIENT_BASE = 100;
+	}
+
+	enum NotificationType
+	{
+		NOTIFICATION_TYPE_SYSTEM = 0x0401;
+		NOTIFICATION_TYPE_NEWS = 0x0402;
+		NOTIFICATION_TYPE_GAME = 0x0501;
+	}
+
+	enum NotificationFlag
+	{
+		NOTIFICATION_FLAG_PC_PERSISTENT = 0x0001;
+		NOTIFICATION_FLAG_PC_TEMP = 0x0002;
+		NOTIFICATION_FLAG_PC_IDLE = 0x0004;
+		NOTIFICATION_FLAG_M_NOTIFY = 0x0100;
+		NOTIFICATION_FLAG_M_POPUP = 0x0200;
+		NOTIFICATION_FLAG_M_TEMP = 0x0400;
+
+		NOTIFICATION_FLAG_NORMAL = 0x0302;
+		NOTIFICATION_FLAG_STRONG = 0x0301;
+	}
+}
+
+message RouterExtension
+{
+	optional uint32 target_server_type = 1;	//Constant.ServerType
+	optional uint32 routing_key = 2;
+	optional uint64 ack_id = 3;
+}
+
+message ServerPacketHeader
+{
+	optional uint32 version = 1;
+	optional fixed64 id = 2;
+	optional uint32 command_type = 3;
+	optional uint32 command = 4;
+	optional uint32 result = 5;
+	optional uint32 timestamp = 6;
+	optional RouterExtension router_extension = 10;
+}
+
+message AppMessage
+{
+	optional uint32 display_type = 1; //Constant.AppMessageDisplayType
+	optional uint32 app_id = 2;
+	optional string open_id = 3;
+	optional string title = 4;
+	optional string text = 5;
+	optional string image = 6;
+	repeated string uris = 7;
+	optional string message = 8;
+	optional string data = 9;
+	optional string media_tag = 10;
+	optional bytes extra_data = 11;
+}
+
+message NotificationMessage
+{
+	optional uint32 notification_type = 1;	//Constant.NotificationType
+	optional uint32 flag = 2;	//Constant.NotificationFlag
+	optional string title = 3;
+	optional string content = 4;
+	repeated string links = 5;
+	optional string link_name = 6;
+	optional string icon = 7;
+	optional string source = 8;
+	optional uint32 duration = 9;	// in seconds
+	optional uint32 expiry_time = 10;	// timestamp
+	repeated uint32 target_platforms = 11;	//Constant.ClientPlatform
+}
+
+message LSMessageInfo
+{
+	optional uint64 from_uid = 1;
+	optional uint32 session_type = 2;	//Constant.MessageSessionType
+	optional uint64 session_id = 3;
+	optional uint32 message_type = 4;	//Constant.MessageType
+	optional bytes message = 5;
+	optional bytes data = 6;
+}
+
+// CMD_LS_BUDDY_IMPORT
+
+message LSBuddyImportRequest
+{
+	optional uint64 uid = 1;
+	optional uint64 game_id = 2;
+	repeated uint64 buddy_uids = 3;
+}
+
+// CMD_LS_MESSAGE_SEND
+
+message LSMessageSendRequest
+{
+	repeated LSMessageInfo messages = 1;
+}
+
+// CMD_LS_APP_GROUP_CREATE
+
+message LSAppGroupCreateRequest
+{
+	optional uint32 app_id = 1;
+	optional uint64 group_id = 2;
+	optional uint32 app_server_id = 3;
+	repeated uint64 uids = 4;
+}
+
+// CMD_LS_DISCUSSION_REMOVE
+
+message LSDiscussionRemoveRequest
+{
+	optional uint64 discussion_id = 1;
+}
+
+// CMD_LS_DISCUSSION_UPDATE
+
+message LSDiscussionUpdateRequest
+{
+	optional uint64 discussion_id = 1;
+	optional string name = 2;
+	optional uint64 owner_uid = 3;
+	optional uint32 max_member_count = 4;
+	optional uint32 flag = 5;	//Constant.DiscussionFlag
+}
+
+// CMD_LS_DISCUSSION_MEMBER_ADD
+
+message LSDiscussionMemberAddRequest
+{
+	optional uint64 discussion_id = 1;
+	repeated uint64 uids = 2;
+}
+
+// CMD_LS_DISCUSSION_MEMBER_REMOVE
+
+message LSDiscussionMemberRemoveRequest
+{
+	optional uint64 discussion_id = 1;
+	repeated uint64 uids = 2;
+}
+
+// CMD_NS_PUSH
+
+message NSPushRequest
+{
+	repeated uint64 uids = 1;
+	optional string message = 2;
+	optional string data = 3;
+}

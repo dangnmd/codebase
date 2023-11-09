@@ -1,0 +1,18 @@
+package PBData;
+
+message GameStartLog
+{
+	required uint32 uid = 1;
+	required uint32 gameid = 2;
+	optional uint32 count = 3;
+	optional uint32 laststart = 4;
+}
+
+message GameLoginLog
+{
+	optional uint64 id = 1;
+	optional uint32 game_id = 2;
+	optional uint64 uid = 3;
+	optional uint32 ip = 4;
+	optional uint32 login_time = 5;
+}

@@ -1,0 +1,31 @@
+package PBData;
+
+message UserChangeUsername
+{
+	optional uint64 uid = 1;
+	optional string fromname = 2;
+	optional string toname = 3;
+	optional string user_ip = 4;
+	optional uint32 timestamp = 5;
+}
+
+message UserChangePassword
+{
+	optional uint64 uid = 1;
+	optional string frompass = 2;
+	optional string topass = 3;
+	optional string user_ip = 4;
+	optional uint32 timestamp = 5;
+}
+
+message FbConnectLog
+{
+	optional uint64 id = 1;
+	optional uint64 uid = 2;
+	optional uint64 fb_uid = 3;
+	optional uint64 app_id = 4;
+	optional uint32 action = 5;
+	optional uint32 direction = 6;
+	optional uint32 ip = 7;
+	optional uint32 create_time = 8;
+}

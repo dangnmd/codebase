@@ -1,0 +1,45 @@
+package PBData.GDP;
+
+message Query
+{
+	enum Option
+	{
+		OPTION_QUERY_FROM_DB = 0x10;
+		OPTION_QUERY_FROM_MASTER = 0x20;
+	}
+	required string name = 1;
+	repeated bytes params = 2;
+	optional uint32 option = 3;
+}
+
+message Request
+{
+	required uint32 id = 1;
+	repeated Query queries = 2;
+}
+
+message Result
+{
+	enum Status
+	{
+		STATUS_SUCCESS = 0;
+		STATUS_ERROR = 1;
+		STATUS_ERROR_SERVER = 2;
+		STATUS_ERROR_AUTH = 3;
+		STATUS_ERROR_PARAM = 4;
+		STATUS_ERROR_CONFIG = 5;
+		STATUS_ERROR_STORAGE = 6;
+		STATUS_ERROR_DATA = 7;
+		STATUS_ERROR_NO_DATA = 8;
+		STATUS_ERROR_EXIST = 9;
+		STATUS_ERROR_NOT_EXIST = 10;
+	}
+	required Status status = 1;
+	repeated bytes data = 2;
+}
+
+message Reply
+{
+	required uint32 id = 1;
+	repeated Result results = 2;
+}

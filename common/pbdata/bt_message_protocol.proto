@@ -1,0 +1,29 @@
+package BTMessageProtocol;
+
+enum Command
+{
+	CMD_GAME_MESSAGE = 1;
+}
+
+enum ErrorCode
+{
+	ERROR_SUCCESS = 0;
+}
+
+// =========== C2S =====================
+message GameMessage
+{
+	optional int64 msg_id = 1;
+	optional int64 app_id  = 2;
+	optional string meta_tag = 3; 
+	optional int32 from_id = 4;
+	repeated int32 to_ids = 5;
+	optional bytes content = 6;
+}
+
+// ============= S2C ====================
+message GameMessageAck
+{
+	 optional int64 msg_id = 1;
+	 optional int32 error_code = 2;
+}

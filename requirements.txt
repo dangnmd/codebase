@@ -1,0 +1,16 @@
+mysqlclient
+pylibmc
+python-baseconv
+django-cors-headers
+unidecode
+scikit-learn
+pyvi==0.0.9.3
+boto3
+googlemaps
+beautifulsoup4
+lxml
+html5lib
+simplejson
+hashids
+typing-extensions
+tld

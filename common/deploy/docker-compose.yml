@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  [DOCKER_SERVICE]:
+    hostname: ${ENV}_${PROJECT_NAME}_${HOST_PORT}
+    container_name: ${ENV}_${PROJECT_NAME}_${HOST_PORT}
+    working_dir: /opt/project/
+    #build: .
+    image: ${DOCKER_IMAGE}
+    env_file:
+      - /data/release/keys/auth.env
+    ports:
+      - "${HOST_PORT}"
+    #entrypoint: /bin/bash /opt/init_container
+    command: bash -c "gunicorn ${PROJECT_NAME}.wsgi -c gunicorn_config.py -n ${ENV}_${PROJECT_NAME}_${HOST_PORT}"
+    network_mode: "host"
+    restart: unless-stopped
+    volumes:
+      - /data/release/${PROJECT_NAME}_${HOST_PORT}/current:/opt/project
+      - /data/release/${PROJECT_NAME}_${HOST_PORT}/current/gunicorn:/opt/gunicorn
+      - /data/release/${PROJECT_NAME}_${HOST_PORT}/current/log:/data/release/${PROJECT_NAME}_${HOST_PORT}/current/log
+      - /data/prometheus:/data/prometheus
+      - /data/release:/data/release
+      - /data/mediasource:/data/mediasource
+      - /opt/ip2location/ip-country.bin:/opt/ip2location/ip-country.bin
+      - /etc/timezone:/etc/timezone
+      - /etc/localtime:/etc/localtime
+      - /var/run/nscd/socket:/var/run/nscd/socket
+
+
+

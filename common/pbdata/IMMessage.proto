@@ -1,0 +1,55 @@
+package PBData.IM;
+
+message Message
+{
+	optional uint64 id = 1;
+	optional uint32 sid = 2;
+	optional uint64 did = 3;
+	optional uint32 timestamp = 4;
+	optional bytes content = 5;
+	optional bytes attachment = 6;
+}
+
+message Notification
+{
+	required uint32 uid = 1;
+	required uint32 nid = 2;
+	optional uint32 createtime = 3;
+	optional uint32 param1 = 4;
+	optional uint32 param2 = 5;
+	optional string param3 = 6;
+	optional string param4 = 7;
+}
+
+message NotifyConfig
+{
+	required uint32 type = 1;
+	required uint32 nid = 2;
+	optional uint32 param1 = 3;
+	optional uint32 param2 = 4;
+	optional string param3 = 5;
+	optional string param4 = 6;
+}
+
+message OfflineFileInfo
+{
+	required uint64 fileid = 1;
+	required int32 fromuid = 2;
+	required int32 touid = 3;
+	optional uint64 filesize = 4;
+	optional string filename = 5;
+	optional string prefixurls = 6;
+	optional int32 numurl = 7;
+	optional int32 segmentsize = 8;
+	optional uint32 createtime = 9;
+	optional uint32 totype = 10;
+	optional uint64 toid = 11;
+}
+
+message OfflineMessage
+{
+	required uint32 uid = 1;
+	required uint32 fromtype = 2;
+	required uint64 fromid = 3;
+	required uint64 messageid = 4;
+}

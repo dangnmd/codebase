@@ -1,0 +1,191 @@
+package PBData.bee_account_db;
+message BuddyCate
+{
+	optional int32 cateid = 1;
+	optional int32 userid = 2;
+	optional bytes name = 3;
+	optional int32 createdate = 4;
+}
+message VoteInfo
+{
+	optional int32 vid = 1;
+	optional int64 did = 2;
+	optional int32 userid = 3;
+	optional int32 addtime = 4;
+	optional int32 resultversion = 5;
+	optional int32 duration = 6;
+	optional bytes title = 7;
+	optional int64 icon = 8;
+	optional bytes description = 9;
+	optional int32 flag = 10;
+	optional int32 status = 11;
+}
+message UserUniqueid
+{
+	optional int32 user_id = 1;
+	optional bytes unique_id = 2;
+	optional int32 status = 3;
+}
+message PublicApi
+{
+	optional int32 sid = 1;
+	optional bytes name = 2;
+	optional bytes owner = 3;
+	optional bytes password = 4;
+	optional int32 type = 5;
+	optional int32 previlege = 6;
+	optional int32 createdate = 7;
+}
+message Bind
+{
+	optional int32 user_id = 1;
+	optional bytes account_type = 2;
+	optional bytes account = 3;
+	optional bytes account_id = 4;
+	optional int32 create_date = 5;
+	optional int32 flag = 6;
+	optional int32 status = 7;
+}
+message UserInfo
+{
+	optional int32 userid = 1;
+	optional bytes nickname = 2;
+	optional int32 exp = 3;
+	optional uint64 icon = 4;
+	optional int32 gender = 5;
+	optional int32 birthday = 6;
+	optional int32 usertype = 7;
+	optional int32 ver = 8;
+	optional int32 createdate = 9;
+	optional int32 option = 10;
+	optional bytes description = 11;
+	optional bytes devicesign = 12;
+	optional uint64 cover = 13;
+}
+message UserDevice
+{
+	optional bytes device_id = 1;
+	optional int32 user_id = 2;
+	optional int32 status = 3;
+}
+message ApiWhitelist
+{
+	optional int32 sid = 1;
+	optional int32 ip = 2;
+}
+message UserImport
+{
+	optional int32 userid = 1;
+	optional int32 buddy_import = 2;
+}
+message UserBuddy
+{
+	optional int32 userid = 1;
+	optional int32 buddyid = 2;
+	optional int32 cateid = 3;
+	optional int32 relation = 4;
+	optional int32 status = 5;
+	optional uint64 opt = 6;
+}
+message DiscussionMember
+{
+	optional int64 did = 1;
+	optional int32 userid = 2;
+	optional int32 opt = 3;
+	optional int32 position = 4;
+	optional int32 joindate = 5;
+	optional int32 status = 6;
+}
+message LoginHistory
+{
+	optional int32 id = 1;
+	optional int32 userid = 2;
+	optional int32 logindate = 3;
+	optional bytes ip = 4;
+	optional int32 version = 5;
+}
+message Discussion
+{
+	optional int64 did = 1;
+	optional bytes title = 2;
+	optional int32 kind = 3;
+	optional int32 opt = 4;
+	optional int64 icon = 5;
+	optional int32 ver = 6;
+	optional int32 createrid = 7;
+	optional int32 member_version = 8;
+	optional int32 status = 9;
+	optional bytes topic = 10;
+	optional int32 vid = 11;
+}
+message Oauth
+{
+	optional int32 userid = 1;
+	optional bytes provider = 2;
+	optional bytes account = 3;
+	optional bytes providerid = 4;
+	optional bytes ip = 5;
+	optional int32 createdate = 6;
+}
+message Account
+{
+	optional int32 userid = 1;
+	optional bytes account = 2;
+	optional bytes password = 3;
+	optional bytes deviceid = 4;
+	optional bytes ip = 5;
+	optional int32 createdate = 6;
+}
+message UserSign
+{
+	optional int32 userid = 1;
+	optional bytes sign = 2;
+	optional int32 ver = 3;
+}
+message VoteOption
+{
+	optional int32 vid = 1;
+	optional int32 optionid = 2;
+	optional bytes title = 3;
+}
+message ContactList
+{
+	optional int32 user_id = 1;
+	optional bytes account_type = 2;
+	optional bytes account = 3;
+	optional bytes name = 4;
+	optional int32 flag = 5;
+	optional int32 buddy_id = 6;
+	optional int32 status = 7;
+}
+message UserVersion
+{
+	optional int32 userid = 1;
+	optional int32 vertype = 2;
+	optional int32 ver = 3;
+}
+message UserExInfo
+{
+	optional int32 userid = 1;
+	optional bytes mobile = 2;
+}
+message UserApi
+{
+	optional int32 userid = 1;
+	optional int32 sid = 2;
+	optional int32 flag = 3;
+}
+message VoteResult
+{
+	optional int32 vid = 1;
+	optional int32 optionid = 2;
+	optional int32 userid = 3;
+	optional int32 addtime = 4;
+}
+message ApiInfo
+{
+	optional int32 sid = 1;
+	optional bytes key = 2;
+	optional bytes value = 3;
+	optional int32 version = 4;
+}

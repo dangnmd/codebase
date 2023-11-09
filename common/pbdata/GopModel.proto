@@ -1,0 +1,125 @@
+package PBData.Gop;
+
+message AppInfo
+{
+	optional uint32 app_id = 1;
+	optional string app_name = 2;
+	optional string app_key = 3;
+	optional uint32 base_unit_id = 4;
+	optional uint32 publisher_id = 5;
+	optional uint32 developer_id = 6;
+	optional uint32 type = 7;
+	optional uint64 flag = 8;
+	optional uint64 scope = 9;
+	optional string description = 10;
+	optional uint32 provider_id = 11;
+	optional string domain = 12;
+	optional string callback_uri = 13;
+	optional string server_ips = 14;
+	optional string payment_key = 15;
+	optional string payment_uri = 16;
+	optional uint32 create_time = 17;
+	optional uint32 update_time = 18;
+	optional string extra_data = 19;
+	optional uint32 app_status = 20;
+	optional string country_blacklist = 21;
+	optional string country_whitelist = 22;
+	optional string installation_languages = 23;
+	optional uint32 gamecenter_flag = 24;
+}
+
+message Grant
+{
+	optional uint32 platform = 2;
+	optional uint64 uid = 3;
+	optional uint32 app_id = 4;
+	optional uint64 scope = 5;
+	optional uint32 source = 6;
+	optional uint32 grant_time = 7;
+	optional uint32 update_time = 8;
+	optional uint32 last_use_time = 9;
+}
+
+message AppAccount
+{
+	optional uint32 platform = 2;
+	optional uint64 uid = 3;
+	optional uint32 app_id = 4;
+	optional uint32 client_type = 5;
+	optional uint32 app_server_id = 6;
+	optional uint32 app_role_id = 7;
+	optional string name = 8;
+	optional string icon = 9;
+	optional uint32 create_time = 10;
+	optional uint32 last_login_time = 11;
+}
+
+message AppConfig
+{
+	optional uint32 app_id = 1;
+	optional string auth_public_key = 2;
+	optional string auth_private_key = 3;
+	optional uint64 flag = 4;
+	optional string otp_config = 5;
+	optional string game_rewards = 6;
+	optional string whitelist_ip = 7;
+	optional string blacklist_ip = 8;
+	optional string extra_data = 9;
+	optional uint32 create_time = 10;
+	optional uint32 update_time = 11;
+}
+
+message AppStaff
+{
+	optional uint32 app_id = 2;
+	optional uint32 platform = 3;
+	optional uint64 uid = 4;
+	optional uint32 flag = 5;
+	optional uint32 create_time = 6;
+	optional uint32 update_time = 7;
+}
+
+message Banner
+{
+	optional uint32 banner_type = 2;
+	optional string country = 3;
+	optional string language = 4;
+	optional string banner = 5;
+	optional uint32 create_time = 6;
+	optional uint32 update_time = 7;
+}
+
+message AppGroupInfo
+{
+	optional uint32 app_id = 2;
+	optional uint32 app_server_id = 3;
+	optional uint64 group_id = 4;
+	optional string group_name = 5;
+	optional uint64 owner_uid = 6;
+	optional uint64 garena_discussion_id = 7;
+	optional uint32 create_time = 8;
+	optional uint32 update_time = 9;
+}
+
+message AppGroupMember
+{
+	optional uint32 app_id = 2;
+	optional uint32 app_server_id = 3;
+	optional uint64 group_id = 4;
+	optional uint32 platform = 5;
+	optional uint64 uid = 6;
+	optional uint32 role = 7;
+	optional uint32 create_time = 8;
+	optional uint32 update_time = 9;	
+}
+
+message AppAccountConnect
+{
+	optional uint32 app_id = 2;
+	optional uint32 primary_platform = 3;
+	optional uint64 primary_uid = 4;
+	optional uint32 secondary_platform = 5;
+	optional uint64 secondary_uid = 6;
+	optional uint32 status = 7;
+	optional uint32 create_time = 8;
+}

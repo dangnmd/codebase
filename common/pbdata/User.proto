@@ -1,0 +1,125 @@
+package PBData;
+
+message UserAccount
+{
+	optional uint64 uid = 1;
+	optional string username = 2;
+	optional string salt = 3;
+	optional string password = 4;
+	optional uint32 password_s = 5;
+	optional uint64 status = 6;
+	optional string email = 7;
+	optional uint32 email_v = 8;
+}
+
+message UserProfile
+{
+	optional uint64 uid = 1;
+	optional uint32 gender = 2;
+	optional string bday = 3;
+	optional uint32 regdate = 4;
+	optional string regip = 5;
+	optional string location = 6;
+	optional string acc_country = 7;
+	optional string nickname = 8;
+	optional bytes avatar_id = 9;
+	optional uint32 update_time = 10;
+}
+
+message UserShell
+{
+	optional int32 available = 1;
+	optional uint32 topup_time = 2;
+	optional uint32 shop_time = 3;
+}
+
+message UserCredit
+{
+	optional uint32 uid = 1;
+	optional uint32 credit = 2;
+	optional uint32 used_credit = 3;
+	optional uint32 credit_updatetime = 4;
+	optional uint32 first_time = 5;
+	optional uint32 last_time = 6;
+	optional uint32 repay_time = 7;
+	optional uint32 status = 8;
+	optional int32 max_credit = 9;
+	optional uint32 bad_credit = 10;
+}
+
+message UserOtpSeed
+{
+	optional uint32 uid = 1;
+	optional string seed = 2;
+	optional string country_code = 3;
+	optional string mobile_no = 4;
+	optional int32  mobile_enable = 5;
+	optional int32  authenticator_type = 6;
+	optional int32  authenticator_enable = 7;
+	optional int32  twostep_verify_enable = 8;
+	optional uint32 createtime = 9;
+	optional uint32 updatetime = 10;
+}
+
+message UserOtpToken
+{
+	optional uint32 id = 1;
+	optional uint32 uid = 2;
+	optional string token = 3;
+	optional uint32 createtime = 4;
+}
+
+message UserOtpMobileBinding
+{
+	optional uint32 uid = 1;
+	optional string country_code = 2;
+	optional string mobile_no = 3;
+	optional uint32 bind_time = 4;
+	optional uint32 status = 5;
+}
+
+message OtpSpcodeConfig
+{
+	optional uint32 spcode = 1;
+	optional string spname = 2;
+	optional uint32 enable = 3;
+	optional uint32 userdailylimit = 4;
+	optional uint32 mobiledailylimit = 5;
+}
+
+message UserDetail
+{
+	optional uint64 uid = 1;
+	optional string first_name = 2;
+	optional string last_name = 3;
+	optional string middle_name = 4;
+	optional string ic_no = 5;
+	optional uint32 hometown = 6;
+	optional uint32 residence = 7;
+	optional string address = 8;
+	optional string postcode = 9;
+	optional uint32 education = 10;
+	optional string college = 11;
+	optional string highschool = 12;
+	optional string company = 13;
+	optional uint32 verified = 14;
+}
+
+message RegisterUserParams
+{
+	optional uint64 uid = 1;
+	optional string username = 2;
+	optional string salt = 3;
+	optional string password = 4;
+	optional uint32 password_s = 5;
+	optional uint64 status = 6;
+	optional string email = 7;
+	optional uint32 email_v = 8;
+	optional uint32 gender = 9;
+	optional string bday = 10;
+	optional uint32 regdate = 11;
+	optional string regip = 12;
+	optional string location = 13;
+	optional string acc_country = 14;
+}
+

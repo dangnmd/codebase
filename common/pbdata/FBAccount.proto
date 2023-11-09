@@ -1,0 +1,33 @@
+package PBData;
+
+message FbConnect
+{
+	optional uint64 id = 1;
+	optional uint64 uid = 2;
+	optional uint64 fb_uid = 3;
+	optional uint32 create_time = 4;
+}
+
+message FbUser
+{
+	optional uint64 id = 1;
+	optional uint64 fb_app_id = 2;
+	optional uint64 fb_uid = 3;
+	optional string access_token = 4;
+	optional string email = 5;
+	optional string name = 6;
+	optional uint32 gender = 7;
+	optional uint32 token_expiry_time = 8;
+	optional uint32 create_time = 9;
+	optional uint32 update_time = 10;
+	optional uint32 friends_update_time = 11;
+}
+
+message FbUserMapping
+{
+	optional uint64 id = 1;
+	optional uint64 fb_uid = 2;
+	optional uint64 fb_app_id = 3;
+	optional uint64 fb_app_uid = 4;
+	optional uint32 create_time = 5;
+}
