@@ -17,13 +17,13 @@ import os
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "codebase_api.settings")
 from codebase_lib import config
-if config.RUNNING_ENVIRONMENT != config.RunningEnvironment.DEVELOPMENT:
-	import monkey_patches
+#if config.RUNNING_ENVIRONMENT != config.RunningEnvironment.DEVELOPMENT:
+#	import monkey_patches
 from django.core.wsgi import get_wsgi_application
 application = get_wsgi_application()
 app = application
 
-import patch_force_index
-patch_force_index.apply_patch()
+#import patch_force_index
+#patch_force_index.apply_patch()
 from codebase_lib.managers.localization_manager import init_locales
 init_locales()

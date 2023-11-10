@@ -87,7 +87,9 @@ def init_logger(log_dir=None, sentry_dsn=None, environment=None, sentry_project_
 	if log_dir != '@stdout':
 		log_dir = os.path.abspath(log_dir)
 		if log_dir and not os.path.exists(log_dir):
-			os.mkdir(log_dir)
+			print('tao dir=%s',log_dir)
+			os.umask(0)
+			os.mkdir(log_dir, mode=0o777)
 
 	logger_config = {
 		'version': 1,
@@ -264,6 +266,7 @@ def init_logger(log_dir=None, sentry_dsn=None, environment=None, sentry_project_
 			pass
 
 	work_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../')
+	print('ne work dir=%s', work_dir)
 	recover_path = False
 	if work_dir not in sys.path:
 		sys.path.append(work_dir)
@@ -276,10 +279,10 @@ def init_logger(log_dir=None, sentry_dsn=None, environment=None, sentry_project_
 	except:
 		from . import loggerconfig
 		loggerconfig.dictConfig(logger_config)
-
+	print('remove path ne')
 	if recover_path:
 		sys.path.remove(work_dir)
-
+	print('khai bao log')
 	#_patch_print_exception()
 	global log	# pylint: disable=global-statement
 	log = logging.getLogger('main')
@@ -313,29 +316,32 @@ def _patch_print_exception():
 
 #try init log
 def try_init_logger():
-	try:
-		from django.conf import settings
+	
+	#try:
+	from django.conf import settings
 
-		setting_keys = dir(settings)
-		if 'LOGGER_CONFIG' in setting_keys:
-			init_logger(**settings.LOGGER_CONFIG)
-		elif 'LOGGING' in setting_keys and settings.LOGGING:
-			import logging
-			global log	# pylint: disable=global-statement
-			log = logging.getLogger('main')
-			log.exception = append_exc(log.error)
-			log.data = logging.getLogger('data').info
-		else:
-			init_logger()
-	except:
-		try:
-			import config
-			init_logger(**config.LOGGER_CONFIG)
-		except:
-			try:
-				init_logger()
-			except:
-				pass
+	setting_keys = dir(settings)
+	#print('haha %s', setting_keys)
+	if 'LOGGER_CONFIG' in setting_keys:
+		print('hahaha=%s', settings.LOGGER_CONFIG)
+		init_logger(**settings.LOGGER_CONFIG)
+	elif 'LOGGING' in setting_keys and settings.LOGGING:
+		import logging
+		global log	# pylint: disable=global-statement
+		log = logging.getLogger('main')
+		log.exception = append_exc(log.error)
+		log.data = logging.getLogger('data').info
+	else:
+		init_logger()
+	#except:
+		#try:
+		#	import config
+		#	init_logger(**config.LOGGER_CONFIG)
+		#except:
+		#	try:
+		#		init_logger()
+		#	except:
+		#		pass
 
 if log is None:
 	try_init_logger()

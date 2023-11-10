@@ -64,7 +64,7 @@ TEMPLATE_LOADERS = (
 ROOT_URLCONF = 'codebase_api.urls'
 
 # database
-# DATABASES = config.DATABASES
+DATABASES = config.DATABASES
 
 DATABASE_ROUTERS = ['common.django_model.DatabaseRouter', ]
 # Python dotted path to the WSGI application used by Django's runserver.
@@ -120,12 +120,12 @@ STATIC_ROOT = ''
 STATIC_URL = '/static/'
 
 # Additional locations of static files
-STATICFILES_DIRS = (
-	os.path.join(BASE_DIR, '../static').replace('\\', '/'),
-	# Put strings here, like "/home/html/static" or "C:/www/django/static".
-	# Always use forward slashes, even on Windows.
-	# Don't forget to use absolute paths, not relative paths.
-)
+#STATICFILES_DIRS = (
+#	os.path.join(BASE_DIR, '../static').replace('\\', '/'),
+#	# Put strings here, like "/home/html/static" or "C:/www/django/static".
+#	# Always use forward slashes, even on Windows.
+#	# Don't forget to use absolute paths, not relative paths.
+#)
 
 # List of finder classes that know how to find static files in
 # various locations.

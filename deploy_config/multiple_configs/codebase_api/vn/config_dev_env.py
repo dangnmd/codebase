@@ -26,7 +26,7 @@ SOLR_ENDPOINT_PLAN = {
 
 SENTRY_DSN = "http://658f1e70fd3f4b82a66415db1275789a@sentry.cooky.com.vn:9000/3"#"https://cc69f2417595407980e8ffc2b4ea7497@sentry.cooky.com.vn/61"
 
-METRICS_DATA_LOCATION = "~/data/prometheus/%s"
+METRICS_DATA_LOCATION = "/data/prometheus/%s"
 METRICS_IP_WHITELIST = (
 	'127.0.0.1',
 	'210.211.116.165',  # vpn
@@ -46,32 +46,32 @@ CACHE_SERVERS = {
 DATABASE_BACKEND = "django"
 DATABASES = {
 	'default': {
-		'NAME': 'cooky_demo',
+		'NAME': 'dnguyen_api',
 		'ENGINE': 'django.db.backends.mysql',
-		'HOST': '103.147.186.12',
+		'HOST': '172.17.0.2',
 		'PORT': '3306',
-		'USER': 'cooky_demo_dev',
-		'PASSWORD': 'Cm@J8XqW84$=6ap+',
+		'USER': 'root',
+		'PASSWORD': 'dnguyen_api_mysql3306123456',
 		'CONN_MAX_AGE': 3600,
 		'OPTIONS': {'charset': 'utf8mb4'},
 	},
 	'dnguyen_db.master': {
-		'NAME': 'cooky_demo',
+		'NAME': 'dnguyen_api',
 		'ENGINE': 'django.db.backends.mysql',
-		'HOST': '103.147.186.12',
+		'HOST': '172.17.0.2',
 		'PORT': '3306',
-		'USER': 'cooky_demo_dev',
-		'PASSWORD': 'Cm@J8XqW84$=6ap+',
+		'USER': 'root',
+		'PASSWORD': 'dnguyen_api_mysql3306123456',
 		'CONN_MAX_AGE': 3600,
 		'OPTIONS': {'charset': 'utf8mb4'},
 	},
 	'dnguyen_db.slave': {
-		'NAME': 'cooky_demo',
+		'NAME': 'dnguyen_api',
 		'ENGINE': 'django.db.backends.mysql',
-		'HOST': '103.147.186.12',
+		'HOST': '172.17.0.2',
 		'PORT': '3306',
-		'USER': 'cooky_demo_dev',
-		'PASSWORD': 'Cm@J8XqW84$=6ap+',
+		'USER': 'root',
+		'PASSWORD': 'dnguyen_api_mysql3306123456',
 		'CONN_MAX_AGE': 3600,
 		'OPTIONS': {'charset': 'utf8mb4'},
 	},
@@ -267,8 +267,9 @@ def init_prometheus_data_dir(app_name=None):
 	if not app_name:
 		app_name = ""
 	data_dir = METRICS_DATA_LOCATION % app_name
-	
+	print('day ne=' + data_dir)
 	if not os.path.exists(data_dir):
-		os.makedirs(data_dir)
+		os.umask(0)
+		os.makedirs(data_dir, mode=0o777)
 	os.environ["prometheus_multiproc_dir"] = data_dir
 	return data_dir
